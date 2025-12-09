@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* GENERAL */
+body {
+    text-align: center;
+    font-family: sans-serif;
+    background-color: #dffad1;
+    margin: 0;
+}
+
+/* HEADER */
+header {
+    background-color: #ffcc99;
+    margin: 0;
+    padding: 30px 0 0 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* LOGO */
+header img {
+    width: 260px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* MENÚ */
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: 15px;
+    background-color: #7f66ff;
+    width: 100%;
+    padding: 20px;
+}
+
+.menu a,
+.menu div {
+    flex: 1 1 auto;
+    min-width: 80px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- ESTILOS DEL TEMPORIZADOR --- */
+.temporizador {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* --- ESTILOS DE LA RACHA --- */
+.racha {
+    font-size: 1.5em;
+    font-weight: normal;
+    text-align: center;
+    color: #555;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* TABLA PALABRAS */
+#tablaPalabras {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(60px, 100px));
+    gap: 5px;
+    display: inline-grid;
+    margin-bottom: 30px;
+    margin-top: 10px; 
+}
+
+#tablaPalabras div {
+    height: 80px;
+    border: 2px solid black;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+/* TECLADO */
+#tablaLetras {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(40px, 60px));
+    gap: 8px;
+    display: inline-grid;
+}
+
+#tablaLetras div {
+    height: 45px;
+    border: 2px solid black;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #99ddff;
+}
+
+/* IMÁGENES */
+#tablaPalabras img,
+#tablaLetras img {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+/* FOOTER */
+footer {
+    background-color: #ff6680;
+    margin-top: 40px;
+    padding: 34px;
+}
+
+/* --- ESTILOS RESPONSIVE PARA MÓVIL --- */
+/* Estos estilos se aplicarán solo si la pantalla mide 600px o menos */
+@media (max-width: 600px) {
+    
+    /* 1. HEADER Y MENÚ */
+    header img {
+        width: 200px; /* Hacemos el logo un poco más pequeño */
+    }
+
+    .menu {
+        gap: 15px; /* Reducimos el espacio entre elementos del menú */
+        padding: 15px 10px; /* Menos padding vertical */
+        justify-content: space-around; /* Distribuir mejor */
+    }
+
+    /* 2. CONTENEDOR PRINCIPAL */
+    main {
+        /* Añadimos padding lateral para que las tablas no toquen los bordes */
+        padding: 0 10px; 
+        box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
+    }
+
+    /* 3. TABLA DE PALABRAS (JUEGO) */
+    #tablaPalabras {
+        /* Usamos '1fr' (fracción) para que las columnas se repartan el espacio disponible */
+        grid-template-columns: repeat(5, 1fr); 
+        gap: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        
+        /* Cambiamos a 'grid' y definimos un ancho para centrarlo */
+        display: grid;
+        width: 95%; /* Que ocupe casi todo el ancho, pero no el 100% */
+        max-width: 400px; /* Límite para que no se estire demasiado */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #tablaPalabras div {
+        height: auto; /* Quitamos la altura fija */
+        aspect-ratio: 1 / 1; /* Hacemos las celdas cuadradas (la mejor solución moderna) */
+        border-width: 1.5px;
+    }
+
+    /* 4. TECLADO (EL CAMBIO MÁS IMPORTANTE) */
+    #tablaLetras {
+        /* La clave: 10 columnas flexibles que ocupan el espacio disponible */
+        grid-template-columns: repeat(10, 1fr);
+        gap: 4px; /* Reducimos el gap entre teclas */
+        
+        display: grid;
+        width: 100%; /* Ocupar todo el ancho del 'main' (que tiene padding) */
+        max-width: 500px; /* Límite */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #tablaLetras div {
+        height: 50px; /* Una altura cómoda para las teclas */
+        border-width: 1.5px;
+    }
+
+    /* 5. IMÁGENES */
+    /* Aseguramos que las imágenes se reescalen bien dentro de las celdas */
+    #tablaPalabras img,
+    #tablaLetras img {
+        max-width: 85%;
+        max-height: 85%;
+        object-fit: contain;
+    }
+
+    /* 6. FOOTER */
+    footer {
+        margin-top: 20px;
+        padding: 20px;
+    }
+}
+
+/* --- ESTILO PARA EL BOTÓN DE REINICIO --- */
+.boton-reiniciar {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin-top: 20px; /* Espacio sobre el botón */
+    margin-bottom: 20px; /* Espacio debajo del botón */
+    cursor: pointer;
+    background-color: #7f66ff; /* Color del menú */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.boton-reiniciar:hover {
+    background-color: #6a50e0; /* Un poco más oscuro al pasar el ratón */
+}
